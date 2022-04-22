@@ -1,1 +1,2 @@
-puts "this is the way"
+puts "welcome to Workshop Software"
+
