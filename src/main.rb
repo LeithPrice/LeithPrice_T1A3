@@ -1,48 +1,55 @@
+require 'colorize'
+require 'artii'
+require 'tty-prompt'
+
+
 $workshop_name = ''
 $workshop_address = ''
 $time = ''
 $customer_details = []
-
+$prompt =TTY::Prompt.new
+$a = Artii::Base.new
+$value =''
 
 def initilize(workshop_name, workshop_address, time)
         $workshop_name = workshop_name
         $workshop_address = workshop_address
         $time = time
+        $value = value
         $customer_details = []
 end
 
 def banner_title
     system "clear"
     puts " "
-    puts "#{$workshop_name} Workshop Software"
+    puts $a.asciify("#{$workshop_name} Workshop Software").colorize(:red)
+    puts "*****************************************************************************************************************************".colorize(:blue)
+    puts "#{$workshop_address}".colorize(:red)
+    puts " "
     puts " "
 end
 
 def leave_software
-    
-    puts "Would you like to leave the software(Yes/No)"
-    quit = gets.chomp.downcase
-    while (quit !='yes' && quit != 'no' )
-        if (quit !='yes' && quit != 'no' )
-            puts "Please answer yes or no"
-            quit = gets.chomp.downcase 
-        end
-    end
-    if quit == "yes"
+    value = $prompt.select("Would you like to leave the Software?") do |menu|
+        menu.choice "Yes", 1
+        menu.choice "No", 2
+    end 
+   
+    if value == 1
         banner_title
         puts "Thank you for using #{$workshop_name} Workshop Software"
         puts " "
-    elsif quit == "no"
+    elsif value == 2
         invoice_query
     end
 end
 
 def display_invoice
     banner_title    
-    totalresult = $customer_details[7] * $customer_details[8]
-    puts "*******************************************************************"
-    puts "*******************************************************************"
-    puts "******* Work Invoice **********************************************"
+    totalresult = $customer_details[7] * $time
+    puts "*******************************************************************".colorize(:green)
+    puts "*******************************************************************".colorize(:green)
+    puts "******* Work Invoice **********************************************".colorize(:green)
     puts " Customer         : #{$customer_details[0]}"
     puts " Customer Address : #{$customer_details[1]}"
     puts " Registration No. : #{$customer_details[2]}"
@@ -50,14 +57,18 @@ def display_invoice
     puts " Vehicle Make     : #{$customer_details[4]}"
     puts " Vehicle Model    : #{$customer_details[5]}"
     puts " Odometer         : #{$customer_details[6]} kms"
-    puts "*******************************************************************" 
-    puts "*******************************************************************"
-    puts " Labour Hourly Rate : $#{$customer_details[7]}"
-    puts " Labour Quantity    : #{$customer_details[8]}"
-    puts "_____________________________________________"
-    puts " TOTAL AMOUNT       : $#{totalresult}"
-    puts "_____________________________________________"
+    puts "*******************************************************************".colorize(:green)
+    puts "*******************************************************************".colorize(:green)
+    print " Labour Hourly Rate :"
+    puts "           $#{$customer_details[7]}".colorize(:blue)
+    print " Labour Quantity    :"
+    puts "           #{$time}".colorize(:blue)
+    puts "_____________________________________________".colorize(:red)
+    print " TOTAL AMOUNT       :" 
+    puts "           $#{totalresult}".colorize(:blue)
+    puts "_____________________________________________".colorize(:red)
     puts " "
+    puts "*******************************************************************".colorize(:green)
     leave_software
 
 end
@@ -66,18 +77,13 @@ def labour_time
     banner_title
     puts "What is the Labour time"
     begin
-        time = gets.chomp
-        time = Float(time)
+        $time = gets.chomp
+        $time = Float($time)
     rescue ArgumentError
         puts "Please enter an hourly number:"
         retry
     end
 
-
-    $customer_details.push time
-    customerdeets = $customer_details
-    print customerdeets
-    puts " "
 end
 
 
@@ -101,7 +107,7 @@ def customer_information
         input = Integer(input)
     rescue ArgumentError
         banner_title
-        puts "Please enter correct year:"
+        puts "Please enter correct year:".colorize(:red)
         retry
     end
     $customer_details.push input
@@ -120,12 +126,12 @@ def customer_information
         input = Integer(input)
     rescue ArgumentError
         banner_title
-        puts "Please enter correct odometer:"
+        puts "Please enter correct odometer:".colorize(:red)
         retry
     end
     $customer_details.push input
     banner_title
-    puts " What is the Hourly Labour Rate for this Customer:"
+    puts "What is the Hourly Labour Rate for this Customer:"
     begin
         input = gets.chomp
         input = Float(input)
@@ -135,54 +141,38 @@ def customer_information
         retry
     end
     $customer_details.push input
-    
 end
-
-
 
 
 
 
 def existing_customer
     banner_title
+puts "bobobobobo"
 end
-
-
-
-
 
 
 
 def invoice_query
     banner_title
-    puts "Would you like to Generate a new invoice (Yes/No)"
-    invoice = gets.chomp.downcase
-    while (invoice !='yes' && invoice != 'no' )
-      if (invoice !='yes' && invoice != 'no' )
-            puts "Please answer yes or no"
-            invoice = gets.chomp.downcase
-        end
-    end
-    if invoice == "yes"
+    value = $prompt.select("Would you like to Generate a new invoice?") do |menu|
+        menu.choice "Yes", 1
+        menu.choice "No", 2
+    end 
+    if value == 1
         banner_title
-        puts "Is this a new customer (Yes/No)"
-        customer = gets.chomp.downcase
-        while (customer !='yes' && customer != 'no' )
-            if (customer !='yes' && customer != 'no' )
-            puts "Please answer yes or no"
-            customer = gets.chomp.downcase 
-            end
-        end     
-        if (customer == 'yes' && customer != 'no')
+        value = $prompt.select("Is this a new customer") do |menu|
+            menu.choice "Yes", 1
+            menu.choice "No", 2
+        end 
+        if value == 1
             customer_information
             labour_time
             display_invoice
-        elsif (customer == 'no' && customer != 'yes')
+        elsif value == 2
             existing_customer
-            
-            
         end
-    elsif invoice == "no"
+    elsif value == 2
         banner_title
         leave_software
     end
@@ -191,8 +181,8 @@ end
 
 
 system "clear" 
-puts "Welcome to Workshop Software"
-puts "----------------------------"
+puts "Welcome to Workshop Software".colorize(:red)
+puts "----------------------------".colorize(:blue)
 puts "Please enter your Workshop Name"
 $workshop_name= gets.chomp.to_s
 puts "Please enter your Workshop Address"

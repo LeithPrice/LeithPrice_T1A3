@@ -8,4 +8,6 @@ gem "tty-prompt"
 
 gem "colorize"
 
-gem "ascii"
+gem "artii"
+
+gem "tty-markdown"
