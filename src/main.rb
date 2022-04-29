@@ -80,7 +80,7 @@ def labour_time
         $time = gets.chomp
         $time = Float($time)
     rescue ArgumentError
-        puts "Please enter an hourly number:"
+        puts "Please enter an hourly number:".colorize(:red)
         retry
     end
 
@@ -89,6 +89,7 @@ end
 
 def customer_information
     banner_title
+    $customer_details.clear
     puts "Customer Name:"
     input = gets.chomp.to_s
     $customer_details.push input
@@ -125,7 +126,7 @@ def customer_information
         input = gets.chomp
         input = Integer(input)
     rescue ArgumentError
-        banner_title
+        
         puts "Please enter correct odometer:".colorize(:red)
         retry
     end
@@ -136,11 +137,12 @@ def customer_information
         input = gets.chomp
         input = Float(input)
     rescue ArgumentError
-        banner_title
-        puts "Please enter correct Hourly Rate"
+        
+        puts "Please enter correct Hourly Rate".colorize(:red)
         retry
     end
     $customer_details.push input
+    File.write("customer.txt", $customer_details, mode: "a")
 end
 
 
@@ -148,7 +150,10 @@ end
 
 def existing_customer
     banner_title
-puts "bobobobobo"
+ file_data = File.read("customer.txt")
+print file_data
+
+
 end
 
 
