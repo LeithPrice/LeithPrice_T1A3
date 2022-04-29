@@ -1,18 +1,25 @@
-def initilize(workshop_name, workshop_address)
-        @workshop_name = workshop_name
-        @workshop_address = workshop_address
-        @customer_details = []
+$workshop_name = ''
+$workshop_address = ''
+$time = ''
+$customer_details = []
+
+
+def initilize(workshop_name, workshop_address, time)
+        $workshop_name = workshop_name
+        $workshop_address = workshop_address
+        $time = time
+        $customer_details = []
 end
 
 def banner_title
     system "clear"
     puts " "
-    puts "#{@workshop_name} Workshop Software"
+    puts "#{$workshop_name} Workshop Software"
     puts " "
 end
 
 def leave_software
-    banner_title
+    
     puts "Would you like to leave the software(Yes/No)"
     quit = gets.chomp.downcase
     while (quit !='yes' && quit != 'no' )
@@ -23,12 +30,127 @@ def leave_software
     end
     if quit == "yes"
         banner_title
-        puts "Thank you for using #{@workshop_name} Workshop Software"
+        puts "Thank you for using #{$workshop_name} Workshop Software"
         puts " "
     elsif quit == "no"
         invoice_query
     end
 end
+
+def display_invoice
+    banner_title    
+    totalresult = $customer_details[7] * $customer_details[8]
+    puts "*******************************************************************"
+    puts "*******************************************************************"
+    puts "******* Work Invoice **********************************************"
+    puts " Customer         : #{$customer_details[0]}"
+    puts " Customer Address : #{$customer_details[1]}"
+    puts " Registration No. : #{$customer_details[2]}"
+    puts " Vehicle Year     : #{$customer_details[3]}"
+    puts " Vehicle Make     : #{$customer_details[4]}"
+    puts " Vehicle Model    : #{$customer_details[5]}"
+    puts " Odometer         : #{$customer_details[6]} kms"
+    puts "*******************************************************************" 
+    puts "*******************************************************************"
+    puts " Labour Hourly Rate : $#{$customer_details[7]}"
+    puts " Labour Quantity    : #{$customer_details[8]}"
+    puts "_____________________________________________"
+    puts " TOTAL AMOUNT       : $#{totalresult}"
+    puts "_____________________________________________"
+    puts " "
+    leave_software
+
+end
+
+def labour_time
+    banner_title
+    puts "What is the Labour time"
+    begin
+        time = gets.chomp
+        time = Float(time)
+    rescue ArgumentError
+        puts "Please enter an hourly number:"
+        retry
+    end
+
+
+    $customer_details.push time
+    customerdeets = $customer_details
+    print customerdeets
+    puts " "
+end
+
+
+def customer_information
+    banner_title
+    puts "Customer Name:"
+    input = gets.chomp.to_s
+    $customer_details.push input
+    banner_title
+    puts "Customer Address:"
+    input = gets.chomp.to_s
+    $customer_details.push input
+    banner_title
+    puts "Vehicle Registration Number:"
+    input = gets.chomp.to_s
+    $customer_details.push input
+    banner_title
+    puts "Vehicle Year:"
+    begin
+        input = gets.chomp
+        input = Integer(input)
+    rescue ArgumentError
+        banner_title
+        puts "Please enter correct year:"
+        retry
+    end
+    $customer_details.push input
+    banner_title
+    puts "Vehicle Make:"
+    input = gets.chomp.to_s
+    $customer_details.push input
+    banner_title
+    puts "Vehicle Model:"
+    input = gets.chomp.to_s
+    $customer_details.push input
+    banner_title
+    puts "Odometer Kms:"
+    begin
+        input = gets.chomp
+        input = Integer(input)
+    rescue ArgumentError
+        banner_title
+        puts "Please enter correct odometer:"
+        retry
+    end
+    $customer_details.push input
+    banner_title
+    puts " What is the Hourly Labour Rate for this Customer:"
+    begin
+        input = gets.chomp
+        input = Float(input)
+    rescue ArgumentError
+        banner_title
+        puts "Please enter correct Hourly Rate"
+        retry
+    end
+    $customer_details.push input
+    
+end
+
+
+
+
+
+
+def existing_customer
+    banner_title
+end
+
+
+
+
+
 
 
 def invoice_query
@@ -43,33 +165,38 @@ def invoice_query
     end
     if invoice == "yes"
         banner_title
-        puts "Is the a new customer (Yes/No)"
+        puts "Is this a new customer (Yes/No)"
         customer = gets.chomp.downcase
         while (customer !='yes' && customer != 'no' )
             if (customer !='yes' && customer != 'no' )
             puts "Please answer yes or no"
-            customer = gets.chomp.downcase  
+            customer = gets.chomp.downcase 
             end
-            customer_details
-    end     
-elsif invoice == "no"
+        end     
+        if (customer == 'yes' && customer != 'no')
+            customer_information
+            labour_time
+            display_invoice
+        elsif (customer == 'no' && customer != 'yes')
+            existing_customer
+            
+            
+        end
+    elsif invoice == "no"
+        banner_title
         leave_software
-end
+    end
 end
 
-def customer_details
-    banner_title
-    puts " Customer Name:"
-    
-end
+
 
 system "clear" 
 puts "Welcome to Workshop Software"
 puts "----------------------------"
 puts "Please enter your Workshop Name"
-@workshop_name= gets.chomp.to_s
+$workshop_name= gets.chomp.to_s
 puts "Please enter your Workshop Address"
-@workshop_address = gets.chomp.to_s
+$workshop_address = gets.chomp.to_s
 banner_title
 invoice_query
 
@@ -83,34 +210,3 @@ invoice_query
 
 
 
-
-
-# puts "Is the a new customer(Yes/No)"
-# Customer = gets.chomp.downcase
-# while (customer !='yes' && customer != 'no' )
-#     if (customer !='yes' && customer != 'no' )
-#         puts "Please answer yes or no"
-#         customer = gets.chomp.downcase  
-#     end
-# end
-
-
-
-# puts "What is the Temperature"
-#     begin
-#         temp = gets.chomp
-#         temp = Integer(temp)
-#     rescue ArgumentError
-#         print "Please enter an integer number:"
-# retry 
-# end
-
-# if weather == "yes" && temp < 15
-#     puts "It’s wet and cold"
-# elsif weather == "no" && temp < 15
-#     puts "It’s not raining but cold"
-# elsif weather == "no" && temp >= 15
-#     puts "It’s warm but not raining"
-# else
-#     puts "It’s warm and raining"
-# end
