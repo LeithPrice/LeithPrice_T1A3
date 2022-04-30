@@ -1,7 +1,9 @@
-leith
-griffin
-ADIP
-2022
-toyota
-prado
-100.0
+Leith;griffin;ADIP;4444;toytota;prado;100.0;
+julie;kallangur;45678;2345;ferrari;spider;100.0;
+tom;chermside;IMRICH;2020;ferrari;spider;100.0;
+Leith;Price;PRT012;2022;honda;jazz;110.0;
+geoff;kallangur;456TYH;1997;ford;ranger;90.0;
+jack;sparrow;456HTR;2020;hundai;elantra;110.0;
+Allen;Kallangur;176GTI;1997;nissan;navara;120.0;
+Leith;Price;544TRE;2332;ford;ranger;130.0;
+Leith;Price;345TRE;2323;Toyotoa;Siera;100.0;
