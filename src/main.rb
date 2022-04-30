@@ -3,6 +3,7 @@
 require 'colorize'
 require 'artii'
 require 'tty-prompt'
+require 'json'
 
 # clearing all variables and arrays
 
@@ -161,7 +162,15 @@ def customer_information
         retry
     end
     $customer_details.push $input
-    File.write("customer.txt", $customer_details, mode: "a")
+    # File.write("customer.txt", $customer_details, mode: "a")
+    # File.open("customer.txt", "w+") do |f|
+    #     f.puts($customer_details)
+    #   end
+      File.open('customer.txt', 'w') do |f|
+        $customer_details.each do |ch|
+          f.write("#{ch}\n")
+        end
+      end
 end
 
 # the method for getting user input for searching the text file for existing customers and saving to a usable array
@@ -170,20 +179,31 @@ def existing_customer
     banner_title
     puts "Vehicle Registration Number:"
     input = gets.chomp.upcase
-    arr = []
+    # arr = []
+    # file_download = []
+    temp =''
     $customer_details.clear
     $file_data = File.read("customer.txt")
-    puts $file_data
+    # temp = JSON.parse($file_data)    
+    
+    # $file_data = Kernel.eval(file_download)
+
+    print $file_data
+    print temp
+    # puts $file_data[1]
+    # puts $file_data[2]
+    
+    # file_download = File.read("customer.txt")
     #  $file_data.select { |arr| arr[2] == "#{input}" }
-    $customer_details.push arr
-    puts $customer_details
-    puts input
-    while ($customer_details == nil)
-        if ($customer_details == nil)
-        existing_customer
-        else ($customer_details != nil)
-    end
-end
+    # $customer_details.push arr
+    # puts $customer_details
+    # puts input
+#     while ($customer_details == nil)
+#         if ($customer_details == nil)
+#         existing_customer
+#         else ($customer_details != nil)
+#     end
+# end
 end
 
 # the method for asking if user wants to generate a new invoice and if the customer is new or old
