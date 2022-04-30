@@ -195,20 +195,6 @@ def existing_customer
             sleep 2
             $customer_details = customerParts 
             print "\n"
-        
-        # elsif rego != $old_input
-        #     print "Registration not found, Returning to Main menu...".colorize(:red)
-        #     sleep 2
-        #     invoice_query
-        # elsif rego != $old_input
-        #     print "invalid rego entered"   
-        #         puts "Hope to see you soon"
-        #         sleep(3)
-        #         begin
-        #             exit!
-        #         rescue SystemExit
-        #             p 123
-        #         end
         end
     end
 end
@@ -236,6 +222,8 @@ def invoice_query
         elsif value == 2
             existing_customer
             if $customer_details.empty?
+                print "Registration not found, Returning to Main menu...".colorize(:red)
+                sleep 2
                 invoice_query
             else
             odometer_input
