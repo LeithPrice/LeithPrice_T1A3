@@ -195,13 +195,24 @@ def existing_customer
             sleep 2
             $customer_details = customerParts 
             print "\n"
-        # else rego != $old_input
+        
+        # elsif rego != $old_input
         #     print "Registration not found, Returning to Main menu...".colorize(:red)
         #     sleep 2
         #     invoice_query
+        # elsif rego != $old_input
+        #     print "invalid rego entered"   
+        #         puts "Hope to see you soon"
+        #         sleep(3)
+        #         begin
+        #             exit!
+        #         rescue SystemExit
+        #             p 123
+        #         end
         end
     end
 end
+
 
 # the method for asking if user wants to generate a new invoice and if the customer is new or old
 
@@ -224,9 +235,13 @@ def invoice_query
             display_invoice
         elsif value == 2
             existing_customer
+            if $customer_details.empty?
+                invoice_query
+            else
             odometer_input
             labour_time
             display_invoice
+            end
         end
     elsif value == 2
         banner_title
