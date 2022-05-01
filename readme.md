@@ -117,5 +117,5 @@ The Password is at the top of this Readme.md document.
 ![Control Flowchart](/docs/flowchart.png)
 ![Trello screenshot](/docs/trelloscreenshot.png)
 ![Welcome screen screenshot](/docs/welcome_screenshot.png)
-![Menu screen screenshot][/docs/Menu_screenshot.png]
+![Menu screen screenshot](/docs/Menu_screenshot.png)
 ![Invoice Display screenshot](/docs/Invoicedisplay_screenshot.png)
