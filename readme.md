@@ -81,10 +81,41 @@ These IF, ELSE  conditions always loop because because the Methods at the end of
 # - how to use any command line arguments made for the application #
 
 
+- steps to install the application.
+ First you must have the installed software to run the file. First you have to install either Ubuntu on Windows machine or Homebrew on Mac OS
+    - The Link for instructions to install Homebrew for Mac is https://www.digitalocean.com/community/tutorials/how-to-install-and-use-homebrew-on-macos
+    - The Link for instructions to install Ubuntu for Windows Machine is https://www.windowscentral.com/how-install-ubuntu-2110-wsl-windows-10-and-11
+
+    If you have Windows 11 on your terminal you may need to follow the following steps to install Ubuntu due to BIOS and HYPER-V mods that are required.
+    - https://beebom.com/how-enable-hyper-v-windows-11-home/#:~:text=Hyper%2DV%20is%20a%20native,Home%20edition%20of%20Windows%2011
 
 
+ Next you need to install your Ruby virtual machine. This involves downloading RVM or rbenv on your terminal. And then install Ruby.
+ Rvm for Windows based machines, and Rbenv for Mac OS based machines. 
+   - The Link for instructions for MAC is https://medium.com/@gratefulcheddar/installing-rbenv-and-updating-to-the-newest-ruby-version-22c465063450
+   - The Link for structions for windows is https://www.digitalocean.com/community/tutorials/how-to-install-ruby-and-set-up-a-local-programming-environment-on-windows-10
+
+You can use your code editer of choice.
+
+In terminal, you can do a git clone of the repository ( im assuming you already have it to be reading this,)
+ to do this you must enter the following, 
+
+  git clone https://github.com/LeithPrice/LeithPrice_T1A3
+
+- any dependencies required by the application to operate 
+The program uses a range of Gems to enhance user experience. When you open the file with ./run_app.sh, It will automatically download the needed Gems and fire up the program.
+
+- any system/hardware requirements 
+System requirements arent very high.  As a minimium you will need Windows 10 for any WIndows machine, or Mac OS 11 for any Apple Mac computer.
+
+- how to use any command line arguments made for the application 
+There are no command line arguements for the application. Once you start the program with ./run_app.sh, you will be asked to login from there. 
+The Password is at the top of this Readme.md document.
 
 
 # Screenshots #
 ![Control Flowchart](/docs/flowchart.png)
 ![Trello screenshot](/docs/trelloscreenshot.png)
+![Welcome screen screenshot](/docs/welcome_screenshot.png)
+![Menu screen screenshot][/docs/Menu_screenshot.png]
+![Invoice Display screenshot](/docs/Invoiceddisplay_screenshot.png)

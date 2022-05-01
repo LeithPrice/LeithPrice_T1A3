@@ -184,9 +184,18 @@ def existing_customer
       puts " "
       puts "Found Customer Registration #{customerParts[2]}".colorize(:green)
       puts "Vehicle Belongs to #{customerParts[0]} #{customerParts[1]}".colorize(:red)
-      sleep 2
-      $customer_details = customerParts 
-      print "\n"
+      puts = " "
+      value = $prompt.select("Is this the Customer you were looking for?") do |menu|
+        menu.choice "Yes", 1
+        menu.choice "No", 2
+        puts = " "
+      end
+      if value ==1
+        $customer_details = customerParts 
+        break
+      elsif value = 2
+        print "\n"
+      end
     end
   end
 end
@@ -201,16 +210,16 @@ def invoice_query
   end 
   if value == 1
     banner_title
-    value = $prompt.select("Is this a new customer") do |menu|
+    value = $prompt.select("Is this an existing customer") do |menu|
       menu.choice "Yes", 1
       menu.choice "No", 2
     end 
-    if value == 1
+    if value == 2
       customer_information
       odometer_input
       labour_time
       display_invoice
-    elsif value == 2
+    elsif value == 1
       existing_customer
       if $customer_details.empty?
         print "Registration not found, Returning to Main menu...".colorize(:red)
