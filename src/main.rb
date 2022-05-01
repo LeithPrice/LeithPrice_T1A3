@@ -228,6 +228,7 @@ def invoice_query
   end
 end
 
+# Main Logon and Password check
   system "clear"
   puts "Welcome to Workshop Software".colorize(:red)
   puts "----------------------------".colorize(:blue)
@@ -251,17 +252,6 @@ end
     sleep 2
   end
 
-
-
-# # initial logon code 
-# system "clear" 
-# if ARGV.length > 0
-#   user_name = ARGV[0]
-# else
-#   user_name = "User"
-# end
-#   password_check
- 
 
 
   

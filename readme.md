@@ -1,6 +1,12 @@
+
+
 ## Leith Price T1A3 assessment Read Me file ##
 
 - My T1A3 terminal Application is a basic take on Mechanical Workshop Software. Allowing the user, a workshop, to generate an invoice containing all the customer information and sales information and display a complete sales invoice on the screen. The great thing about my software is that all customer data input is saved to a .txt file to be able to be accessed at a later time. This removed repetition and for the user with regular customers. The main menu allows you to choose if the customer is existing or not and search the vehicle registration number. If the Rego number is in the system already then it will use that previously entered and saved customer information to proliferate the sales invoice to be displayed. 
+
+When you begin the application, the Workshop name can be what ever you like however there is a specific password.
+
+Password = dfe546gt
 
 # R4 Link to Source Control Repository #
 
@@ -53,8 +59,32 @@ The menus consist of the method invoice_query and leave_software. If asks for us
 
 These IF, ELSE  conditions always loop because because the Methods at the end of instructions chains always call the main method again.
 
-# Develop an implementation plan which:
-- outlines how each feature will be implemented and a checklist of tasks for each feature
-- prioritise the implementation of different features, or checklist items within a feature
-- provide a deadline, duration or other time indicator for each feature or checklist/checklist-item 
+# Develop an implementation plan which: #
+# - outlines how each feature will be implemented and a checklist of tasks for each feature #
+# - prioritise the implementation of different features, or checklist items within a feature #
+# - provide a deadline, duration or other time indicator for each feature or checklist/checklist-item #
 
+ The trello workboard i used shows the order in which i performed the tasks. 
+ - i got approval for the idea
+ - drew up a flowchart
+ - performed all the coding and error testing
+ - wrote my readme.md file
+ - took images of my slides and trollo board
+ - wrote my rspec file
+
+# Design help documentation which includes a set of instructions which accurately describe how to use and install the application. #
+
+# You must include: #
+# - steps to install the application #
+# - any dependencies required by the application to operate #
+# - any system/hardware requirements #
+# - how to use any command line arguments made for the application #
+
+
+
+
+
+
+# Screenshots #
+![Control Flowchart](/docs/flowchart.png)
+![Trello screenshot](/docs/trelloscreenshot.png)
