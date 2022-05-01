@@ -14,14 +14,16 @@ $value = ''
 $file_data = []
 $input = ''
 $old_input = ''
+$user_name = ''
 
 # initializing the arrays and variables to global status
-def initilize(workshop_name, workshop_address, time, value, input, old_input)
+def initilize(workshop_name, workshop_address, time, value, input, old_input, user_name)
   $workshop_name = workshop_name
   $workshop_address = workshop_address
   $time = time
   $value = value
   $input = input
+  $user_name = user_name
   $old_input = old_input
   $customer_details = []
   $file_data = []
@@ -226,17 +228,44 @@ def invoice_query
   end
 end
 
-# initial logon code 
-system "clear" 
-puts "Welcome to Workshop Software".colorize(:red)
-puts "----------------------------".colorize(:blue)
-puts "Please enter your Workshop Name"
-$workshop_name= gets.chomp.to_s
-banner_title
-invoice_query
+  system "clear"
+  puts "Welcome to Workshop Software".colorize(:red)
+  puts "----------------------------".colorize(:blue)
+  puts "What is your Workshop name?"
+  $workshop_name = gets.chomp.to_s
+  puts " "
+  puts "Welcome #{$workshop_name}"
+  puts "What is the Password"
+  current_password = "dfe546gt"
+  password = gets.chomp.to_s
+  if password == current_password
+    puts " "
+    puts "Correct Password".colorize(:blue)
+    sleep 2
+    banner_title
+    invoice_query
+  elsif 
+    system "clear"
+    puts "Incorrect Password, Goodbye..".colorize(:red)
+    puts " "
+    sleep 2
+  end
 
 
 
+# # initial logon code 
+# system "clear" 
+# if ARGV.length > 0
+#   user_name = ARGV[0]
+# else
+#   user_name = "User"
+# end
+#   password_check
+ 
+
+
+  
+  
 
 
 
